@@ -1,4 +1,5 @@
 require_relative 'ceasar_cipher_decrypter'
+require_relative 'polyalphabetic_shift_decrypter'
 
 decrypter = CeasarCipherDecrypter.new
-decrypter.brute_force('BTTIBTPIIWTHTRGTIADRPIXDC')
+p decrypter.brute_force('UTABQKAGMXXTMHQMRMZFMEFUONDQMW')

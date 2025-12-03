@@ -5,15 +5,16 @@ class CeasarCipherDecrypter
 
   def brute_force(string)
     lower_cased_string = string.downcase
+    results = Array.new
     (0..NUMBER_OF_ALPHABET - 1).each do |i|
-      shifted_string = lower_cased_string.chars.map do |character|
+      results << lower_cased_string.chars.map do |character|
         shifted_ascii_value = (character.ord + i)
         if shifted_ascii_value > 'z'.ord
           shifted_ascii_value -= NUMBER_OF_ALPHABET
         end
         shifted_ascii_value.chr
       end.join
-      puts shifted_string
     end
+    results
   end
 end
