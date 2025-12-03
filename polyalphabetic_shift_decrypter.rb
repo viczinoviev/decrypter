@@ -1,19 +1,21 @@
 require_relative 'ceasar_cipher_decrypter'
 
 class PolyalphabeticShiftDecrypter
-  def initialize(number_alphabets)
-    @number_alphabets = number_alphabets
-    @sub_strings = Array.new(number_alphabets) {Array.new}
+
+  NUMBER_OF_SHIFTS = 3
+
+  def initialize
+    @sub_strings = Array.new(NUMBER_OF_SHIFTS) {Array.new}
     @caesar_decrypter = CeasarCipherDecrypter.new
   end
 
   def brute_force(ciphertext)
     split(ciphertext)
-    shifted_substrings = Array.new(@number_alphabets) {Array.new}
+    shifted_substrings = Array.new(NUMBER_OF_SHIFTS) {Array.new}
     @sub_strings.each_with_index { |sub_string, index|
       shifted_substrings[index] = @caesar_decrypter.brute_force(sub_string.join)
     }
-    possible_combinations = Array.new(@number_alphabets)
+    possible_combinations = Array.new(NUMBER_OF_SHIFTS)
 
     File.open("result.txt", "a") do |file|
       for i in 0..shifted_substrings[0].length-1
@@ -34,7 +36,7 @@ class PolyalphabeticShiftDecrypter
 
   def split(ciphertext)
     ciphertext.chars.each_with_index do |character, index|
-      @sub_strings[index % @number_alphabets] << character
+      @sub_strings[index % NUMBER_OF_SHIFTS] << character
     end
   end
 
@@ -42,7 +44,7 @@ class PolyalphabeticShiftDecrypter
     result = Array.new
     characters_of_sub_strings.each_with_index do |character_array, i|
       character_array.each_with_index do |character, j|
-        result[(j * @number_alphabets) + i] = character
+        result[(j * NUMBER_OF_SHIFTS) + i] = character
       end
     end
     result.join

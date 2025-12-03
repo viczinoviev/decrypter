@@ -5,5 +5,5 @@ decrypter = CeasarCipherDecrypter.new
 p decrypter.brute_force('UTABQKAGMXXTMHQMRMZFMEFUONDQMW')
 
 
-decrypter = PolyalphabeticShiftDecrypter.new(3)
+decrypter = PolyalphabeticShiftDecrypter.new
 decrypter.brute_force('NMFXXVTKXQBQMUYJIQNDVTKOHQOJUO')
